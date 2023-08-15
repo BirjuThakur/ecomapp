@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 5000 ;
+const port = process.env.PORT || 5000 ;
 const connectDB = require("./db/connection");
 const registerRouter = require("./router/register");
 
@@ -13,7 +13,7 @@ app.get("/",(req,res)=>{
     res.send("welcome to my programming")
 })
 
-app.listen(PORT, ()=>{
+app.listen(port, ()=>{
     connectDB();
-    console.log(`running on ${PORT}`)
+    console.log(`running on ${port}`)
 })

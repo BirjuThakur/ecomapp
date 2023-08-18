@@ -5,7 +5,10 @@ const port = process.env.PORT || 5000 ;
 const cors = require("cors");
 const connectDB = require("./db/connection");
 const registerRouter = require("./router/register");
+const cookieParser = require('cookie-parser');
+
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use("/user",registerRouter);

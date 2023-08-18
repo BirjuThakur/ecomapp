@@ -1,13 +1,24 @@
 const Register = require("../../modals/register");
+const RegisterLink = require("../nodemailer/registerLink");
 
 //create register 
 const createRegister = async(req,res) =>{
     try {
         const {name,email,phoneNumber,companyName,GST_Number,password} = req.body;
+        if(!name || !email || !password || !phoneNumber || !companyName || !GST_Number ){
+            return res.status(401).send({
+                success:false,
+                message:"enter credential correctly"
+            })
+        }
         const registerUser = new Register({
             name,email,phoneNumber,companyName,GST_Number,password
         });
+
+        //generating token for verifing email
+        const token = await registerUser.generateToken();
         const user = await registerUser.save();
+        await RegisterLink(email,token,user._id);
         res.status(201).send({
             success:true,
             message:"user register successfully",

@@ -22,7 +22,7 @@ const RegisterLink = async(email,token,userId) =>{
         await transport.sendMail(details,(err)=>{
             console.log("Verification email sent successfully.");
             if(err){
-                console.error('Error sending email:', error);
+                console.error('Error sending email:', err);
             }else{
                 console.log(transport.sendMail(details))
             }

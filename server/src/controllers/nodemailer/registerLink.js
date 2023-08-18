@@ -16,7 +16,7 @@ const RegisterLink = async(email,token,userId) =>{
             to:email,
             subject:"register verification link",
             html:`<h1> Click the link to verify your email:</h1>
-            <a href="http://127.0.0.1:5000/user/register/${userId}/verify/${token}">Verify Email</a>`
+            <a href="https://ecomapp-sf7z.onrender.com/user/register/${userId}/verify/${token}">Verify Email</a>`
         }
 
         await transport.sendMail(details,(err)=>{
